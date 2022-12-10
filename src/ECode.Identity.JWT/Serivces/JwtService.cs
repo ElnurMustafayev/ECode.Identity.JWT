@@ -9,16 +9,23 @@ using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
 using ECode.Identity.JWT.Serivces.Base;
+using Microsoft.Extensions.Options;
 
 public class JwtService : IJwtService {
-    private readonly JwtOption options;
+    private readonly JwtOption? options;
 
     public JwtService(JwtOption options) => this.options = options;
 
+    public JwtService(IOptions<JwtOption> options) => this.options = options.Value;
+
+    public JwtService() { }
 
 
-    public string Create(IEnumerable<Claim>? claims = null)
-    {
+
+    public string Create(IEnumerable<Claim>? claims = null) {
+        if(this.options == null)
+            throw new Exception($"Set {nameof(JwtOption)} for calling {nameof(Create)} method.");
+
         var credentials = new SigningCredentials(
             key: new SymmetricSecurityKey(options.EncryptionKeyInBytes),
             algorithm: options.Algorithm
@@ -46,8 +53,7 @@ public class JwtService : IJwtService {
 
 
 
-    public TTokent Parse<TTokent>(string jwt)
-    {
+    public TTokent Parse<TTokent>(string jwt) {
         ArgumentNullException.ThrowIfNull(jwt, nameof(jwt));
 
         var decodedPayload = GetPayload(jwt);
@@ -57,8 +63,7 @@ public class JwtService : IJwtService {
 
 
 
-    private string GetPayload(string jwt)
-    {
+    private string GetPayload(string jwt) {
         ArgumentNullException.ThrowIfNull(jwt, nameof(jwt));
 
         var tokenParts = jwt.Split('.', StringSplitOptions.RemoveEmptyEntries);
