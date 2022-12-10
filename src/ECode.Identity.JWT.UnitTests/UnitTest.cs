@@ -1,4 +1,6 @@
 using ECode.Identity.JWT.Options;
+using ECode.Identity.JWT.Serivces;
+using ECode.Identity.JWT.Serivces.Base;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 
@@ -7,7 +9,7 @@ namespace ECode.Identity.JWT.UnitTests;
 public class UnitTest
 {
     private JwtOption jwtOption;
-    private JwtService jwtService;
+    private IJwtService jwtService;
 
     public UnitTest() {
         this.jwtOption = new JwtOption(
@@ -22,7 +24,7 @@ public class UnitTest
     [Fact]
     void SuccessDefaultToken() {
         var jwt = this.jwtService.Create();
-        var token = JwtService.Parse(jwt);
+        var token = this.jwtService.Parse(jwt);
 
         Assert.True(true);
     }
@@ -36,7 +38,7 @@ public class UnitTest
         };
 
         var claimsJwt = this.jwtService.Create(claims);
-        var claimsToken = JwtService.Parse(claimsJwt);
+        var claimsToken = this.jwtService.Parse(claimsJwt);
 
         Assert.Equal(claimsToken["id"], id);
         Assert.Equal(claimsToken["Id"], claimsToken["ID"]);

@@ -1,4 +1,4 @@
-﻿namespace ECode.Identity.JWT;
+﻿namespace ECode.Identity.JWT.Serivces;
 
 using Microsoft.IdentityModel.Tokens;
 using ECode.Identity.JWT.Models;
@@ -8,9 +8,9 @@ using System.Text.Json;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
+using ECode.Identity.JWT.Serivces.Base;
 
-public class JwtService
-{
+public class JwtService : IJwtService {
     private readonly JwtOption options;
 
     public JwtService(JwtOption options) => this.options = options;
@@ -37,8 +37,7 @@ public class JwtService
 
 
 
-    public static DefaultToken Parse(string jwt)
-    {
+    public DefaultToken Parse(string jwt) {
         var tokenObj = Parse<DefaultToken>(jwt);
         tokenObj.PayloadJson = GetPayload(jwt);
 
@@ -47,7 +46,7 @@ public class JwtService
 
 
 
-    public static TTokent Parse<TTokent>(string jwt)
+    public TTokent Parse<TTokent>(string jwt)
     {
         ArgumentNullException.ThrowIfNull(jwt, nameof(jwt));
 
@@ -58,7 +57,7 @@ public class JwtService
 
 
 
-    private static string GetPayload(string jwt)
+    private string GetPayload(string jwt)
     {
         ArgumentNullException.ThrowIfNull(jwt, nameof(jwt));
 

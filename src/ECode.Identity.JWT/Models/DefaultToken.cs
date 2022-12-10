@@ -18,7 +18,7 @@ public class DefaultToken {
     [JsonIgnore]
     public string? PayloadJson { get; set; }
 
-    public T GetValue<T>(string param) {
+    public virtual T GetValue<T>(string param) {
         ArgumentNullException.ThrowIfNull(param, nameof(param));
 
         if(string.IsNullOrWhiteSpace(this.PayloadJson)) {
@@ -41,7 +41,7 @@ public class DefaultToken {
     }
 
 
-    public string this[string param] => this.GetValue<string>(param);
+    public virtual string this[string param] => this.GetValue<string>(param);
 
 
     public override string ToString() => @$"Expiration Time: {this.ExpirationTime}
