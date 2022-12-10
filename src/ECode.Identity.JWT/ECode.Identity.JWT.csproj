@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
+    <PackageId>ECode.Identity.JWT</PackageId>
+    <Version>1.0.2</Version>
+    <Authors>Mustafayev Elnur</Authors>
+    <Company>ECode</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>JWT, Identity, Auth, Ecode</PackageTags>
+    <Description>This package will help you to work with JWT tokens</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/ElnurMustafayev/ECode.Identity.JWT</RepositoryUrl>
+    
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.25.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.25.1" />
+  </ItemGroup>
+
+</Project>
