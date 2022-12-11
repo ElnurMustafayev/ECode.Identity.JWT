@@ -8,7 +8,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 
     <PackageId>ECode.Identity.JWT</PackageId>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <Authors>Mustafayev Elnur</Authors>
     <Company>ECode</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

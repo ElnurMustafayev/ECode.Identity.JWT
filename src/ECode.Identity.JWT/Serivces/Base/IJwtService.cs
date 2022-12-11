@@ -1,10 +1,7 @@
-﻿using ECode.Identity.JWT.Models;
-using System.Security.Claims;
+﻿namespace ECode.Identity.JWT.Serivces.Base;
 
-namespace ECode.Identity.JWT.Serivces.Base;
+using System.Security.Claims;
 
 public interface IJwtService {
     public string Create(IEnumerable<Claim>? claims = null);
-    public DefaultToken Parse(string jwt);
-    public TTokent Parse<TTokent>(string jwt);
 }

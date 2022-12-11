@@ -1,3 +1,4 @@
+using ECode.Identity.JWT.Helpers;
 using ECode.Identity.JWT.Options;
 using ECode.Identity.JWT.Serivces;
 using ECode.Identity.JWT.Serivces.Base;
@@ -24,7 +25,7 @@ public class UnitTest
     [Fact]
     void SuccessDefaultToken() {
         var jwt = this.jwtService.Create();
-        var token = this.jwtService.Parse(jwt);
+        var token = JwtParser.Parse(jwt);
 
         Assert.True(true);
     }
@@ -38,7 +39,7 @@ public class UnitTest
         };
 
         var claimsJwt = this.jwtService.Create(claims);
-        var claimsToken = this.jwtService.Parse(claimsJwt);
+        var claimsToken = JwtParser.Parse(claimsJwt);
 
         Assert.Equal(claimsToken["id"], id);
         Assert.Equal(claimsToken["Id"], claimsToken["ID"]);
